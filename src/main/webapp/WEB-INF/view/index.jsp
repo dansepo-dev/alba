@@ -15,6 +15,7 @@
 <link href="${fe:url('/css/style.css')}" rel="stylesheet" type="text/css" />
 <link href="${fe:url('/css/font-awesome.min.css')}" rel="stylesheet"
 	type="text/css" />
+<link href="${fe:url('/css/custom.css')}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<la:form action="/search" method="get" styleId="searchForm">
@@ -69,11 +70,15 @@
 									</li>
 								</c:when>
 								<c:when test="${ pageLoginLink }">
-									<li class="nav-item"><la:link href="/login"
-											styleClass="nav-link" role="button" aria-haspopup="true"
-											aria-expanded="false">
-											<em class="fa fa-fw fa-sign-in"></em>
+									<li class="nav-item">
+										<la:link href="/login" styleClass="nav-link" role="button" aria-haspopup="true" aria-expanded="false">
+											<em class="fa fa-user"></em>
 											<la:message key="labels.login" />
+										</la:link></li>
+									<li class="nav-item">
+										<la:link href="/sso" styleClass="nav-link" role="button" aria-haspopup="true" aria-expanded="false">
+											<em class="fa fa-users"></em>
+											TEAMSログイン
 										</la:link></li>
 								</c:when>
 							</c:choose>
@@ -172,5 +177,7 @@
 	<script type="text/javascript" src="${fe:url('/js/bootstrap.min.js')}"></script>
 	<script type="text/javascript" src="${fe:url('/js/suggestor.js')}"></script>
 	<script type="text/javascript" src="${fe:url('/js/index.js')}"></script>
+	<script type="text/javascript" src="${fe:url('/js/custom.js')}"></script>
+	
 </body>
 </html>

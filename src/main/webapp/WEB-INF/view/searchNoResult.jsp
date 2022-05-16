@@ -4,5 +4,8 @@
 	<div class="col-md-8 alert">
 		<la:message key="labels.did_not_match" arg0="${displayQuery}" />
 	</div>
-	<div class="col-md-4"><%-- Side Content --%></div>
+	<div class="col-md-4">
+		<%-- Side Content --%>
+		<jsp:include page="searchCustomResults.jsp" />
+	</div>
 </div>

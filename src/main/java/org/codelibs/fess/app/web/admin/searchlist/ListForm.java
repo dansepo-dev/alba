@@ -15,7 +15,7 @@
  */
 package org.codelibs.fess.app.web.admin.searchlist;
 
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -62,6 +62,11 @@ public class ListForm extends SearchRequestParams {
     public String[] ex_q;
 
     public String sdh;
+
+    // by kim2022-04-27
+    public String ft_cm;
+    public String ft_sc;
+    public String ft_sb;
 
     @Override
     public String getQuery() {
@@ -168,4 +173,21 @@ public class ListForm extends SearchRequestParams {
         }
         return null;
     }
+
+    // by kim 2022-04-27
+    @Override
+    public String getFilterCommon() {
+        return ft_cm;
+    }
+
+    @Override
+    public String getFilterSource() {
+        return ft_sc;
+    }
+
+    @Override
+    public String getFilterSub() {
+        return ft_sb;
+    }
+
 }

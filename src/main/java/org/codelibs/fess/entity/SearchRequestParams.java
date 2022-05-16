@@ -15,7 +15,7 @@
  */
 package org.codelibs.fess.entity;
 
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.util.Locale;
 import java.util.Map;
@@ -71,6 +71,13 @@ public abstract class SearchRequestParams {
     public abstract SearchRequestType getType();
 
     public abstract String getSimilarDocHash();
+
+    //by kim 2022-04-27
+    public abstract String getFilterCommon();
+
+    public abstract String getFilterSource();
+
+    public abstract String getFilterSub();
 
     public String getTrackTotalHits() {
         return null;
@@ -137,4 +144,5 @@ public abstract class SearchRequestParams {
     public enum SearchRequestType {
         SEARCH, ADMIN_SEARCH, JSON, GSA, SUGGEST;
     }
+
 }

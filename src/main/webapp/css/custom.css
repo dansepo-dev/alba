@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+
+.result-list-group {
+    height: 133px;
+    overflow-y: scroll;
+}
+
+.spacer {
+	margin:0;
+	padding:0;
+	height:8px;
+}
+
+#copy-alert {
+  z-index: 1;
+  position: fixed;
+  width: 230px;
+  height: 50px;
+  left: 50%;
+  transform:translateX(-50%);
+  top: 30px;
+}

@@ -17,6 +17,7 @@
 <link href="${fe:url('/css/style.css')}" rel="stylesheet" type="text/css" />
 <link href="${fe:url('/css/font-awesome.min.css')}" rel="stylesheet"
 	type="text/css" />
+<link href="${fe:url('/css/custom.css')}" rel="stylesheet" type="text/css" />
 </head>
 <body class="search">
 	<jsp:include page="header.jsp" />
@@ -145,7 +146,16 @@
 				<jsp:include page="searchNoResult.jsp" />
 			</c:otherwise>
 		</c:choose>
+
 	</main>
+
+	<%-- by kim 2022-04-27 --%>
+	<div id="copy-alert" class="container">
+		<div class="alert alert-danger" id="copy-alert">
+		  <p>リンクをコピーしました! </p> 
+		</div>
+	</div>
+
 	<jsp:include page="footer.jsp" />
 	<input type="hidden" id="contextPath" value="${contextPath}" />
 	<script type="text/javascript"
@@ -153,5 +163,6 @@
 	<script type="text/javascript" src="${fe:url('/js/bootstrap.min.js')}"></script>
 	<script type="text/javascript" src="${fe:url('/js/suggestor.js')}"></script>
 	<script type="text/javascript" src="${fe:url('/js/search.js')}"></script>
+	<script type="text/javascript" src="${fe:url('/js/custom.js')}"></script>
 </body>
 </html>

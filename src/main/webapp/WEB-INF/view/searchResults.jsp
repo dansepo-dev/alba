@@ -38,14 +38,27 @@
 	<ol class="list-unstyled col-md-8">
 		<c:forEach var="doc" varStatus="s" items="${documentItems}">
 			<li id="result${s.index}">
+				<c:if test="${fn:startsWith(doc.url_link, 'http://172')}">
+					<h5><span class="badge badge-success"><la:message key="labels.hs_datasource.terra" /></span></h5>
+				</c:if>
+				<c:if test="${fn:startsWith(doc.url_link, 'https://teams')}">
+					<h5><span class="badge badge-warning"><la:message key="labels.hs_datasource.teams" /></span></h5>
+				</c:if>
+				<c:if test="${fn:startsWith(doc.url_link, 'file')}">
+					<h5><span class="badge badge-danger"><la:message key="labels.hs_datasource.fileserver" /></span></h5>
+				</c:if>
+
 				<h3 class="title text-truncate">
-					<a class="link" href="${doc.url_link}" data-uri="${doc.url_link}"
-						data-id="${doc.doc_id}" data-order="${s.index}">${doc.content_title}</a>
+					<a target="_blank" class="link" href="${doc.url_link}" data-uri="${doc.url_link}"
+						data-id="${doc.doc_id}" data-order="${s.index}">
+						${doc.content_title}
+						<i class="fa fa-external-link-alt"></i>
+					</a>
 				</h3>
 				<div class="body">
 					<c:if test="${thumbnailSupport && !empty doc.thumbnail}">
 					<div class="mr-3">
-						<a class="link d-none d-sm-flex" href="${doc.url_link}" data-uri="${doc.url_link}" data-id="${doc.doc_id}"
+						<a target="_blank" class="link d-none d-sm-flex" href="${doc.url_link}" data-uri="${doc.url_link}" data-id="${doc.doc_id}"
 							data-order="${s.index}"
 						> <img src="${fe:url('/images/blank.png')}" alt="thumbnail"
 							data-src="${fe:url('/thumbnail/')}?docId=${f:u(doc.doc_id)}&queryId=${f:u(queryId)}" class="thumbnail"
@@ -55,8 +68,8 @@
 					</c:if>
 					<div class="description">${doc.content_description}</div>
 				</div>
-				<div class="site text-truncate">
-					<cite>${f:h(doc.site_path)}</cite>
+				<div class="site">
+					<cite>${f:h(doc.url_link)}</cite>
 					<c:if test="${doc.has_cache=='true'}">
 						<small class="d-none d-lg-inline-block"> <la:link
 								href="/cache/?docId=${doc.doc_id}${appendHighlightParams}"
@@ -75,8 +88,10 @@
 					</c:if>
 				</div>
 				<div class="more">
+					<small>
 					<a href="#result${s.index}"><la:message
 							key="labels.search_result_more" /></a>
+					</small>
 				</div>
 				<div class="info">
 					<small> <c:if
@@ -132,7 +147,32 @@
 	</ol>
 	<aside class="col-md-4 d-none d-md-block">
 		<%-- Side Content --%>
+		<jsp:include page="searchCustomResults.jsp" />
+
+		
 		<c:if test="${facetResponse != null}">
+			<c:forEach var="fieldData" items="${facetResponse.fieldList}">
+				<c:if
+					test="${fieldData.name == 'host' && fieldData.valueCountMap.size() > 0}">
+					<ul class="list-group mb-2">
+						<li class="list-group-item text-uppercase"><la:message
+								key="labels.facet_label_title" /></li>
+						<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
+							<c:if
+								test="${countEntry.value != 0 && fe:labelexists(countEntry.key)}">
+								<li class="list-group-item"><la:link
+										href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+											${f:h(fe:label(countEntry.key))} 
+											<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
+									</la:link></li>
+							</c:if>
+						</c:forEach>
+					</ul>
+				</c:if>
+			</c:forEach>
+
+			<%--
+			LABEL
 			<c:forEach var="fieldData" items="${facetResponse.fieldList}">
 				<c:if
 					test="${fieldData.name == 'label' && fieldData.valueCountMap.size() > 0}">
@@ -152,14 +192,16 @@
 					</ul>
 				</c:if>
 			</c:forEach>
+			--%>
+
 			<c:forEach var="facetQueryView" items="${fe:facetQueryViewList()}">
 				<ul class="list-group mb-2">
-					<li class="list-group-item text-uppercase"><la:message
+					<li class="list-group-item py-1 text-uppercase"><la:message
 							key="${facetQueryView.title}" /></li>
 					<c:set var="facetFound" value="F"/>
 					<c:forEach var="queryEntry" items="${facetQueryView.queryMap}">
 						<c:if test="${facetResponse.queryCountMap[queryEntry.value] > 0}">
-							<li class="list-group-item"><la:link
+							<li class="list-group-item py-1"><la:link
 									href="/search?q=${f:u(q)}&ex_q=${f:u(queryEntry.value)}&sdh=${f:u(fe:sdh(sdh))}${fe:pagingQuery(queryEntry.value)}${fe:facetQuery()}${fe:geoQuery()}">
 									<c:if test="${fn:startsWith(queryEntry.key, 'labels.')}"><la:message key="${queryEntry.key}" /></c:if>
 									<c:if test="${not fn:startsWith(queryEntry.key, 'labels.')}">${f:h(queryEntry.key)}</c:if>

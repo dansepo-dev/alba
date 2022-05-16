@@ -7,6 +7,7 @@ $(function() {
       loadImage;
 
   $("#searchForm").on("submit", function(e) {
+	labelControl();
     $searchButton.attr("disabled", true);
     setTimeout(function() {
       $searchButton.attr("disabled", false);
@@ -33,6 +34,14 @@ $(function() {
     $("#langSearchOption").prop("selectedIndex", 0);
     $("#sortSearchOption").prop("selectedIndex", 0);
     $("#numSearchOption").prop("selectedIndex", 0);
+
+// by kim 2022-05-02
+    $("#commonFilterSearchOption").prop("selectedIndex", 0);
+    $("#sourceFilterSearchOption").prop("selectedIndex", 0);
+    $("#fileserverFilterSearchOption").prop("selectedIndex", 0);
+    $("#teamsFilterSearchOption").prop("selectedIndex", 0);
+    $("#terraFilterSearchOption").prop("selectedIndex", 0);
+
     return false;
   });
 

@@ -15,7 +15,7 @@
  */
 package org.codelibs.fess.api.suggest;
 
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -174,13 +174,22 @@ public class SuggestApiManager extends BaseJsonApiManager {
 
         private final String[] tags;
 
+        // by kim 2022-04-27
+        private final String ft_cm;
+        private final String ft_sc;
+        private final String ft_sb;
+
         protected RequestParameter(final HttpServletRequest request, final String query, final String[] tags, final String[] fields,
-                final int num) {
+                final int num, final String ft_cm, final String ft_sc, final String ft_sb) {
             this.query = query;
             this.tags = tags;
             this.fields = fields;
             this.num = num;
             this.request = request;
+
+            this.ft_cm = ft_cm;
+            this.ft_sc = ft_cm;
+            this.ft_sb = ft_sb;
         }
 
         protected static RequestParameter parse(final HttpServletRequest request) {
@@ -209,7 +218,11 @@ public class SuggestApiManager extends BaseJsonApiManager {
                 tags = new String[0];
             }
 
-            return new RequestParameter(request, query, tags, fields, num);
+            final String ft_cm = request.getParameter("ft_cm");
+            final String ft_sc = request.getParameter("ft_sc");
+            final String ft_sb = request.getParameter("ft_sb");
+
+            return new RequestParameter(request, query, tags, fields, num, ft_cm, ft_sc, ft_sb);
         }
 
         @Override
@@ -298,6 +311,23 @@ public class SuggestApiManager extends BaseJsonApiManager {
         public HighlightInfo getHighlightInfo() {
             return new HighlightInfo();
         }
+
+        // by kim 2022-04-27
+        @Override
+        public String getFilterCommon() {
+            return ft_cm;
+        }
+
+        @Override
+        public String getFilterSource() {
+            return ft_sc;
+        }
+
+        @Override
+        public String getFilterSub() {
+            return ft_sb;
+        }
+
     }
 
     @Override

@@ -15,8 +15,7 @@
  */
 package org.codelibs.fess.helper;
 
-import static org.codelibs.core.stream.StreamUtil.split;
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.lang.Character.UnicodeBlock;
 import java.util.ArrayList;
@@ -242,7 +241,8 @@ public class QueryHelper {
                     fessConfig.getIndexFieldAnchor(), //
                     fessConfig.getIndexFieldClickCount(), //
                     fessConfig.getIndexFieldFavoriteCount(), //
-                    fessConfig.getIndexFieldLang());
+                    fessConfig.getIndexFieldLang(),
+                    fessConfig.getIndexFieldVirtualHost()); // by kim 2022-05-09 virtual_host
         }
         if (facetFields == null) {
             facetFields = fessConfig.getQueryAdditionalFacetFields(//

@@ -31,6 +31,13 @@ $(function() {
     $("#langSearchOption").prop("selectedIndex", 0);
     $("#sortSearchOption").prop("selectedIndex", 0);
     $("#numSearchOption").prop("selectedIndex", 0);
+// by kim 202205xx
+    $("#commonFilterSearchOption").prop("selectedIndex", 0);
+    $("#sourceFilterSearchOption").prop("selectedIndex", 0);
+    $("#fileserverFilterSearchOption").prop("selectedIndex", 0);
+    $("#teamsFilterSearchOption").prop("selectedIndex", 0);
+    $("#terraFilterSearchOption").prop("selectedIndex", 0);
+
     return false;
   });
 

@@ -632,6 +632,23 @@ public class GsaApiManager extends BaseApiManager {
         public HighlightInfo getHighlightInfo() {
             return ComponentUtil.getViewHelper().createHighlightInfo();
         }
+
+        // by kim 2022-04-27
+        @Override
+        public String getFilterCommon() {
+            return request.getParameter("ft_cm");
+        }
+
+        @Override
+        public String getFilterSource() {
+            return request.getParameter("ft_sc");
+        }
+
+        @Override
+        public String getFilterSub() {
+            return request.getParameter("ft_sb");
+        }
+
     }
 
     public void setGsaPathPrefix(final String gsaPathPrefix) {

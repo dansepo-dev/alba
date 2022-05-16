@@ -15,8 +15,7 @@
  */
 package org.codelibs.fess.util;
 
-import static org.codelibs.core.stream.StreamUtil.split;
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -70,6 +69,15 @@ public class QueryStringBuilder {
         if (StringUtil.isNotBlank(query)) {
             queryBuf.append(escapeQuery(query));
         }
+
+        if (params.getFilterCommon() != null)
+            queryBuf.append(" ").append(params.getFilterCommon());
+
+        if (params.getFilterSource() != null)
+            queryBuf.append(" ").append(params.getFilterSource());
+
+        if (params.getFilterSub() != null)
+            queryBuf.append(" ").append(params.getFilterSub());
 
         stream(params.getExtraQueries())
                 .of(stream -> stream.filter(q -> StringUtil.isNotBlank(q) && q.length() <= maxQueryLength).forEach(q -> {
