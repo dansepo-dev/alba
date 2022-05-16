@@ -35,7 +35,7 @@
 <div id="result" class="row">
 	<input type="hidden" id="queryId" value="${f:h(queryId)}" /> <input
 		type="hidden" id="rt" value="${f:h(requestedTime)}" />
-	<ol class="list-unstyled col-md-8">
+	<ol class="list-unstyled col-md-9">
 		<c:forEach var="doc" varStatus="s" items="${documentItems}">
 			<li id="result${s.index}">
 				<c:if test="${fn:startsWith(doc.url_link, 'http://172')}">
@@ -145,7 +145,7 @@
 			</li>
 		</c:forEach>
 	</ol>
-	<aside class="col-md-4 d-none d-md-block">
+	<aside class="col-md-3 d-none d-md-block">
 		<%-- Side Content --%>
 		<jsp:include page="searchCustomResults.jsp" />
 

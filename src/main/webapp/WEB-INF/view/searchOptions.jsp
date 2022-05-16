@@ -44,7 +44,7 @@
 	</fieldset>
 
 	<input type="hidden" name="ex_q" id="filter1" value="" />
-	<input type="hidden" name="ex_q" id="filter2" value="" />
+	<input type="hidden" name="fields.label" id="filter2" value="" />
 
 	<%-- SOURCE --%>
 	<fieldset class="form-group">
@@ -98,10 +98,10 @@
 		<label for="contentFilter">TEAMS</label>
 		<select id="teamsFilterSearchOption" class="form-control">
 			<option value="">-  TEAMS  -</option>
-			<option value="TEAMS_HARDWARE">技術HWキュレーション</option>
-			<option value="TEAMS_SOFTWARE">技術SWキュレーション</option>
-			<option value="TEAMS_COMMON">技術共通キュレーション</option>
-			<option value="TEAMS_COMPANY">会社キュレーション</option>
+			<option value="TEAMS_HW">技術HWキュレーション</option>
+			<option value="TEAMS_SW">技術SWキュレーション</option>
+			<option value="TEAMS_CM">技術共通キュレーション</option>
+			<option value="TEAMS_CP">会社キュレーション</option>
 		</select>
 	</fieldset>
 
@@ -111,11 +111,11 @@
 		<label for="contentFilter">TERRA</label>
 		<select id="terraFilterSearchOption" class="form-control">
 			<option value="">-  TERRA  -</option>
-			<option value="TERRA_HARDWARE">ハードウェア関連</option>
-			<option value="TERRA_SOFTWATE">ソフトウェア関連</option>
-			<option value="TERRA_SOLDER">はんだ関連</option>
-			<option value="TERRA_TROUBLE">トラブル関連</option>
-			<option value="TERRA_EQUIPMENT">計測器関連</option>
+			<option value="TERRA_HW">ハードウェア関連</option>
+			<option value="TERRA_SW">ソフトウェア関連</option>
+			<option value="TERRA_SD">はんだ関連</option>
+			<option value="TERRA_TB">トラブル関連</option>
+			<option value="TERRA_EQ">計測器関連</option>
 		</select>
 	</fieldset>
 	

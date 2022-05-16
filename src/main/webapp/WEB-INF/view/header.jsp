@@ -71,12 +71,18 @@
 							</li>
 						</c:when>
 						<c:when test="${ pageLoginLink }">
-							<li class="nav-item"><la:link href="/login"
-									styleClass="nav-link  " role="button" aria-haspopup="true"
-									aria-expanded="false">
-									<em class="fa fa-fw fa-sign-in"></em>
+							<li class="nav-item">
+								<la:link href="/login" styleClass="nav-link " role="button" aria-haspopup="true" aria-expanded="false">
+									<em class="fa fa-user"></em>
 									<span><la:message key="labels.login" /></span>
-								</la:link></li>
+								</la:link>
+							</li>
+							<li class="nav-item">
+								<la:link href="/sso" styleClass="nav-link" role="button" aria-haspopup="true" aria-expanded="false">
+									<em class="fa fa-users"></em>
+									TEAMSログイン
+								</la:link>
+							</li>
 						</c:when>
 					</c:choose>
 					<li class="nav-item"><la:link href="/help" styleClass="nav-link" role="help" aria-haspopup="true"
