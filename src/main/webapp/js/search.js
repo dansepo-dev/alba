@@ -7,7 +7,13 @@ $(function() {
       loadImage;
 
   $("#searchForm").on("submit", function(e) {
-	labelControl();
+	var x1 = $("#filter1").val();
+	if (x1 == "virtual_host:")
+	  $("#filter1").val("");
+
+	// by kim 2022-05-02
+	setFieldsLabel();
+
     $searchButton.attr("disabled", true);
     setTimeout(function() {
       $searchButton.attr("disabled", false);
@@ -269,4 +275,31 @@ $(function() {
     );
     loadImage(this, $(this).attr("data-src"), IMG_LOADING_MAX);
   });
+
+  // by kim 2022-06-19
+  //検索submit時filels.label設定
+  setFieldsLabel = function() {
+	
+    var v1 = $("#filter2").val();
+    
+    var v2 = $('#fileserverFilterSearchOption').val();
+    if ($('#fileserverFilterSearchOption').val().length != 0) {
+		if (v1 == "" || !v1.contains(v2))
+			$("#filter2").val(v1 + v2);
+	}
+	
+    var v3 = $('#teamsFilterSearchOption').val();
+    if ($('#teamsFilterSearchOption').val().length != 0) {
+		if (v1 == "" || !v1.contains(v3))
+			$("#filter2").val(v1 + v3);
+	}
+
+    var v4 = $('#terraFilterSearchOption').val();
+    if ($('#terraFilterSearchOption').val().length != 0) {
+		if (v1 == "" || !v1.contains(v4))
+			$("#filter2").val(v1 + v4);
+	}
+  };
+
+
 });

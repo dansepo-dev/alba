@@ -15,7 +15,7 @@
  */
 package org.codelibs.fess.app.web.search;
 
-import static org.codelibs.core.stream.StreamUtil.stream;
+import static org.codelibs.core.stream.StreamUtil.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -142,6 +142,10 @@ public class SearchAction extends FessSearchAction {
             }
         }
 
+        // by kim 2022-06-13
+        if (StringUtil.isBlank(form.q))
+            form.q = "*:*";
+
         if (StringUtil.isBlank(form.q) && form.fields.isEmpty() && !form.hasConditionQuery()) {
             // redirect to index page
             form.q = null;
@@ -167,6 +171,7 @@ public class SearchAction extends FessSearchAction {
                 if (relatedQueries.length > 0) {
                     RenderDataUtil.register(data, "relatedQueries", relatedQueries);
                 }
+
             });
         } catch (final InvalidQueryException e) {
             if (logger.isDebugEnabled()) {

@@ -7,116 +7,65 @@
 	<fieldset class="form-group">
 		<legend>共通フィルタ</legend>
 		<label for="contentFilter">共通フィルタ</label>
-		<la:select property="ft_cm" styleId="commonFilterSearchOption" styleClass="form-control">
+		<la:select property="common_filter" styleId="commonFilterSearchOption" styleClass="form-control">
 
 			<option value="">-  共通フィルタ  -</option>
-			<la:option value="SiC">SiC</la:option>
-			<la:option value="GaN">GaN</la:option>
-			<la:option value="MOSFET">MOSFET</la:option>
-			<la:option value="モジュール">モジュール</la:option>
-			<la:option value="DAB">DAB</la:option>
-			<la:option value="三相インバータ">三相インバータ</la:option>
-			<la:option value="PFC回路">PFC回路</la:option>
-			<la:option value="単相インバータ">単相インバータ</la:option>
-			<la:option value="DCDCコンバータ">DCDCコンバータ</la:option>
-			<la:option value="蓄電システム">蓄電システム</la:option>
-			<la:option value="PFC電源">PFC電源</la:option>
-			<la:option value="スイッチング電源">スイッチング電源</la:option>
-			<la:option value="パワーコンディショナー">パワーコンディショナー</la:option>
-			<la:option value="系統連系インバータ">系統連系インバータ</la:option>
-			<la:option value="非接触給電">非接触給電</la:option>
-			<la:option value="12V">12V</la:option>
-			<la:option value="24V">24V</la:option>
-			<la:option value="48V">48V</la:option>
-			<la:option value="360V">360V</la:option>
-			<la:option value="500V">500V</la:option>
-			<la:option value="800V">800V</la:option>
-			<la:option value="1200V">1200V</la:option>
-			<la:option value="10A">10A</la:option>
-			<la:option value="30A">30A</la:option>
-			<la:option value="50A">50A</la:option>
-			<la:option value="200A">200A</la:option>
-			<la:option value="10kHz">10kHz</la:option>
-			<la:option value="100kHz">100kHz</la:option>
-			<la:option value="1MHz">1MHz</la:option>
-
+			<c:forEach var="item" items="${Common}">
+				<la:option value="${item.key}">${item.name}</la:option>
+			</c:forEach>
+			
 		</la:select>
 	</fieldset>
 
-	<input type="hidden" name="ex_q" id="filter1" value="" />
+	<input type="hidden" name="ex_q" id="filter1" value="virtual_host:${source_filter}" />
 	<input type="hidden" name="fields.label" id="filter2" value="" />
 
 	<%-- SOURCE --%>
 	<fieldset class="form-group">
 		<legend>情報ソース</legend>
 		<label for="contentFilter">情報ソース</label>
-		<la:select property="ft_sc" styleId="sourceFilterSearchOption" styleClass="form-control">
+		<la:select property="source_filter" styleId="sourceFilterSearchOption" styleClass="form-control">
 			<option value="">-  情報ソース  -</option>
-			<la:option value="FILESERVER">ファイルサーバ</la:option>
-			<la:option value="TEAMS">TEAMS</la:option>
-			<la:option value="TERRA">TERRA</la:option>
+			<c:forEach var="item" items="${Source}">
+				<la:option value="${item.key}">${item.name}</la:option>
+			</c:forEach>
 		</la:select>
 	</fieldset>
-
-	<%--
-	<fieldset class="form-group">
-		<legend>情報ソース</legend>
-		<label for="contentFilter">情報ソース</label>
-		<la:select property="ft_sc" styleId="filterSearchOption" styleClass="form-control">
-			<option value="">-  情報ソース  -</option>
-			<la:option value="sc_fs">ファイルサーバ</la:option>
-			<la:option value="sc_tm">TEAMS</la:option>
-			<la:option value="sc_tr">TERRA</la:option>
-		</la:select>
-	</fieldset>
-	 --%>
 
 	<%-- FILTER FILESERVER --%>
 	<fieldset class="form-group" id="filter-fileserver">
 		<legend>ファイルサーバ</legend>
 		<label for="contentFilter">ファイルサーバ</label>
-		<select id="fileserverFilterSearchOption" class="form-control">
+		<la:select property="fileserver_filter" styleId="fileserverFilterSearchOption" styleClass="form-control">
 			<option value="">-  ファイルサーバ  -</option>
-			<option value="FILESERVER_A">A_仕様関連</option>
-			<option value="FILESERVER_B">B_基板関連</option>
-			<option value="FILESERVER_C">C_HW関連</option>
-			<option value="FILESERVER_D">D_CPLD_FPGA関連</option>
-			<option value="FILESERVER_E">E_機構関連</option>
-			<option value="FILESERVER_F">F_SW関連</option>
-			<option value="FILESERVER_G">G_評価関連</option>
-			<option value="FILESERVER_H">H_製造関連</option>
-			<option value="FILESERVER_J">J_取扱説明書</option>
-			<option value="FILESERVER_K">K_客先向け報告書</option>
-			<option value="FILESERVER_L">L_プロジェクト管理</option>
-			<option value="FILESERVER_M">M_記録・連絡</option>
-		</select>
+			<c:forEach var="item" items="${Fileserver}">
+				<la:option value="${item.key}">${item.name}</la:option>
+			</c:forEach>
+		</la:select>
 	</fieldset>
 
 	<%-- FILTER TEAMS --%>
 	<fieldset class="form-group" id="filter-teams">
 		<legend>TEAMS</legend>
 		<label for="contentFilter">TEAMS</label>
-		<select id="teamsFilterSearchOption" class="form-control">
+		<la:select property="teams_filter" styleId="teamsFilterSearchOption" styleClass="form-control">
 			<option value="">-  TEAMS  -</option>
-			<option value="TEAMS_HW">技術HWキュレーション</option>
-			<option value="TEAMS_SW">技術SWキュレーション</option>
-			<option value="TEAMS_CM">技術共通キュレーション</option>
-			<option value="TEAMS_CP">会社キュレーション</option>
-		</select>
+			<c:forEach var="item" items="${Teams}">
+				<la:option value="${item.key}">${item.name}</la:option>
+			</c:forEach>
+		</la:select>
 	</fieldset>
 
 	<%-- FILTER TERRA --%>
 	<fieldset class="form-group" id="filter-terra">
 		<legend>TERRA</legend>
 		<label for="contentFilter">TERRA</label>
-		<select id="terraFilterSearchOption" class="form-control">
+		<la:select property="terra_filter" styleId="terraFilterSearchOption" styleClass="form-control">
 			<option value="">-  TERRA  -</option>
-			<option value="TERRA_HW">ハードウェア関連</option>
-			<option value="TERRA_SW">ソフトウェア関連</option>
-			<option value="TERRA_SD">はんだ関連</option>
-			<option value="TERRA_TB">トラブル関連</option>
-			<option value="TERRA_EQ">計測器関連</option>
-		</select>
+			<c:forEach var="item" items="${Terra}">
+				<la:option value="${item.key}">${item.name}</la:option>
+			</c:forEach>
+		</la:select>
 	</fieldset>
 	
 	<%-- CONTENT NUMBER --%>

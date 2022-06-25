@@ -63,10 +63,12 @@ public class ListForm extends SearchRequestParams {
 
     public String sdh;
 
-    // by kim2022-04-27
-    public String ft_cm;
-    public String ft_sc;
-    public String ft_sb;
+    // by kim 2022-04-27
+    public String common_filter;
+    public String source_filter;
+    public String fileserver_filter;
+    public String teams_filter;
+    public String terra_filter;
 
     @Override
     public String getQuery() {
@@ -176,18 +178,28 @@ public class ListForm extends SearchRequestParams {
 
     // by kim 2022-04-27
     @Override
-    public String getFilterCommon() {
-        return ft_cm;
+    public String getCommonFilter() {
+        return common_filter;
     }
 
     @Override
-    public String getFilterSource() {
-        return ft_sc;
+    public String getSourceFilter() {
+        return source_filter;
     }
 
     @Override
-    public String getFilterSub() {
-        return ft_sb;
+    public String getFileserverFilter() {
+        return fileserver_filter;
+    }
+
+    @Override
+    public String getTeamsFilter() {
+        return teams_filter;
+    }
+
+    @Override
+    public String getTerraFilter() {
+        return terra_filter;
     }
 
 }

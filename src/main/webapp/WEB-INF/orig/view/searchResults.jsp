@@ -142,11 +142,12 @@
 						<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
 							<c:if
 								test="${countEntry.value != 0 && fe:labelexists(countEntry.key)}">
-								<li class="list-group-item"><la:link
-										href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-											${f:h(fe:label(countEntry.key))} 
-											<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
-									</la:link></li>
+								<li class="list-group-item">
+									<la:link href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+										${f:h(fe:label(countEntry.key))} 
+										<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
+									</la:link>
+								</li>
 							</c:if>
 						</c:forEach>
 					</ul>
@@ -154,17 +155,20 @@
 			</c:forEach>
 			<c:forEach var="facetQueryView" items="${fe:facetQueryViewList()}">
 				<ul class="list-group mb-2">
-					<li class="list-group-item text-uppercase"><la:message
-							key="${facetQueryView.title}" /></li>
+					<li class="list-group-item text-uppercase">
+						<la:message	key="${facetQueryView.title}" />
+					</li>
 					<c:set var="facetFound" value="F"/>
 					<c:forEach var="queryEntry" items="${facetQueryView.queryMap}">
 						<c:if test="${facetResponse.queryCountMap[queryEntry.value] > 0}">
-							<li class="list-group-item"><la:link
+							<li class="list-group-item">
+								<la:link
 									href="/search?q=${f:u(q)}&ex_q=${f:u(queryEntry.value)}&sdh=${f:u(fe:sdh(sdh))}${fe:pagingQuery(queryEntry.value)}${fe:facetQuery()}${fe:geoQuery()}">
 									<c:if test="${fn:startsWith(queryEntry.key, 'labels.')}"><la:message key="${queryEntry.key}" /></c:if>
 									<c:if test="${not fn:startsWith(queryEntry.key, 'labels.')}">${f:h(queryEntry.key)}</c:if>
 									<span class="badge badge-secondary badge-pill float-right">${f:h(facetResponse.queryCountMap[queryEntry.value])}</span>
-								</la:link></li>
+								</la:link>
+							</li>
 							<c:set var="facetFound" value="T"/>
 						</c:if>
 					</c:forEach>

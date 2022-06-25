@@ -74,6 +74,7 @@
 						</c:forEach>
 					</c:if>
 			</a></li>
+			<%--
 			<c:if test="${displayLabelTypeItems}">
 				<li class="list-inline-item"><la:message key="labels.searchoptions_menu_labels" /> <a
 					href="#searchOptions" class="badge badge-primary"
@@ -88,6 +89,19 @@
 							</c:forEach>
 						</c:if>
 				</a></li>
+			</c:if>
+			 --%>
+			<c:if test="${!empty common_filter}">
+				<li class="list-inline-item">共通フィルタ
+					<a href="#searchOptions" class="badge badge-primary" data-toggle="control-options">
+					<c:if test="${empty common_filter}">
+						なし
+					</c:if>
+					<c:if test="${!empty common_filter}">
+						${common_filter}
+					</c:if>
+					</a>
+				</li>
 			</c:if>
 		</ul>
 		<c:if test="${!empty popularWords}">

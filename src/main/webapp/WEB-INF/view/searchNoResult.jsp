@@ -6,6 +6,13 @@
 	</div>
 	<div class="col-md-4">
 		<%-- Side Content --%>
+		<%-- add by kim 2022-04-12 --%>
 		<jsp:include page="searchCustomResults.jsp" />
+		<div class="float-right">
+			<la:link href="/search?q=${f:u(q)}"
+				styleClass="btn btn-link btn-sm">
+				<la:message key="labels.facet_label_reset" />
+			</la:link>
+		</div>
 	</div>
 </div>

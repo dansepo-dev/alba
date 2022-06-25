@@ -813,18 +813,28 @@ public class JsonApiManager extends BaseJsonApiManager {
 
         // by kim 2022-04-27
         @Override
-        public String getFilterCommon() {
-            return request.getParameter("ft_cm");
+        public String getCommonFilter() {
+            return request.getParameter("common_filter");
         }
 
         @Override
-        public String getFilterSource() {
-            return request.getParameter("ft_sc");
+        public String getSourceFilter() {
+            return request.getParameter("source_fFilter");
         }
 
         @Override
-        public String getFilterSub() {
-            return request.getParameter("ft_sb");
+        public String getFileserverFilter() {
+            return request.getParameter("fileserver_filter");
+        }
+
+        @Override
+        public String getTeamsFilter() {
+            return request.getParameter("teams_filter");
+        }
+
+        @Override
+        public String getTerraFilter() {
+            return request.getParameter("terra_filter");
         }
 
     }

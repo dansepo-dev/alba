@@ -6,252 +6,60 @@
 		</div>
 		<div class="spacer"></div>
 
+
+		<form action="/search/" name="side_filter" method="get">
+			<input type="hidden" name="common_filter" value="${common_filter}">
+			<input type="hidden" name="source_filter" value="${source_filter}">
+			<input type="hidden" name="ex_q" value="${source_filter}">
+			<input type="hidden" name="fileserver_filter" value="${fileserver_filter}">
+			<input type="hidden" name="teams_filter" value="${teams_filter}">
+			<input type="hidden" name="terra_filter" value="${terra_filter}">
+		</form>
+
 		<ul class="list-group">
 			<li class="list-group-item py-1">
 				共通フィルタ
 			</li>
 		</ul>
 		<ul class="list-group result-list-group">
+			<c:forEach var="common" items="${Common}">
 			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=SiC&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					SiC 
-				</la:link>
+				<a href="javascript:void(0)" onclick="javascript:doSearch1('?q=${f:u(q)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}', '${common.key}');">
+					${common.name}
+				</a>
 			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=GaN&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					GaN
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=MOSFET&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					MOSFET
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=モジュール&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					モジュール
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=DAB&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					DAB
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=三相インバータ&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					三相インバータ
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=PFC回路&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					PFC回路
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=単相インバータ&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					単相インバータ
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=DCDCコンバータ&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					DCDCコンバータ
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=蓄電システム&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					蓄電システム
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=PFC電源&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					PFC電源
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=スイッチング電源&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					スイッチング電源
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=パワーコンディショナー&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					パワーコンディショナー
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=系統連系インバータ&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					系統連系インバータ
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=非接触給電&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					非接触給電
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=12V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					12V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=24V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					24V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=48V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					48V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=360V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					360V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=500V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					500V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=800V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					800V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=1200V&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					1200V
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=10A&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					10A
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=30A&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					30A
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=50A&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					50A
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=200A&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					200A
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=10kHz&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					10kHz
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=100kHz&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					100kHz
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link
-					href="/search?q=${f:u(q)}&ft_cm=1MHz&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					1MHz
-				</la:link>
-			</li>
+			</c:forEach>
 		</ul>
-		<div class="spacer"></div>
+		
 
+		<div class="spacer"></div>
 		<ul class="list-group mb-2">
 			<li class="list-group-item py-1">
 				 情報ソース
 			</li>
+			<c:forEach var="source" items="${Source}">
 			<li class="list-group-item py-1">
-				<la:link id="fileserver"
-					href="/search?q=${f:u(q)}&ex_q=virtual_host%3aFILESERVER&sdh=${f:u(fe:sdh(sh))}${fe:facetQuery()}${fe:geoQuery()}">
-					ファイルサーバ 
-				</la:link>
+				<a href="javascript:void(0)" onclick="doSearch2('?q=${f:u(q)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}', '${source.key}');">
+					${source.name}
+				</a>
 			</li>
-			<li class="list-group-item py-1">
-				<la:link id="teams"
-					href="/search?q=${f:u(q)}&ex_q=virtual_host%3aTEAMS&sdh=${f:u(fe:sdh(sh))}${fe:facetQuery()}${fe:geoQuery()}">
-					TEAMS
-				</la:link>
-			</li>
-			<li class="list-group-item py-1">
-				<la:link id="terra"
-					href="/search?q=${f:u(q)}&ex_q=virtual_host%3aTERRA&sdh=${f:u(fe:sdh(sh))}${fe:facetQuery()}${fe:geoQuery()}">
-					TERRA
-				</la:link>
-			</li>
+			</c:forEach>
 		</ul>
 		<div class="spacer"></div>
-
-		<%--
-		<b>情報ソース</b>
-		<ul class="list-group mb-2">
-			<li class="list-group-item py-0">
-				<la:link id="fileserver"
-					href="/search?q=${f:u(q)}&ft_sc=ファイルサーバ&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					ファイルサーバ 
-				</la:link>
-			</li>
-			<li class="list-group-item py-0">
-				<la:link id="teams"
-					href="/search?q=${f:u(q)}&ft_sc=TEAMS&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					TEAMS
-				</la:link>
-			</li>
-			<li class="list-group-item py-0">
-				<la:link id="terra"
-					href="/search?q=${f:u(q)}&ft_sc=TERRA&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-					TERRA
-				</la:link>
-			</li>
-		</ul>
-		<div class="spacer"></div>
-		--%>
 
 		<%-- FILESERVER --%>
 		<c:forEach var="fieldData" items="${facetResponse.fieldList}">
 			<c:if test="${fieldData.name == 'label' && fieldData.valueCountMap.size() > 0}">
 				<ul class="list-group mb-2" id="filter-fileserver">
-					<li class="list-group-item py-1 text-uppercase">ファイルサーバ</li>
+					<li class="list-group-item py-1">ファイルサーバ</li>
 					<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
 						<c:if test="${countEntry.value != 0 && fe:labelexists(countEntry.key) && fn:startsWith(countEntry.key, 'FILESERVER_')}">
 							<li class="list-group-item py-1">
-								<la:link
-									href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+								<a href="javascript:void(0)"
+									onclick="doSearch3('?q=${f:u(q)}&fields.label=${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}&source_filter=FILESERVER', '${countEntry.key}');">
 									${f:h(fe:label(countEntry.key))} 
 									<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
-								</la:link>
+								</a>
 							</li>
 						</c:if>
 					</c:forEach>
@@ -267,11 +75,11 @@
 					<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
 						<c:if test="${countEntry.value != 0 && fe:labelexists(countEntry.key) && fn:startsWith(countEntry.key, 'TEAMS_')}">
 							<li class="list-group-item py-1">
-								<la:link
-									href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+								<a href="javascript:void(0)"
+									onclick="doSearch4('?q=${f:u(q)}&fields.label=${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}&source_filter=TEAMS', '${countEntry.key}');">
 									${f:h(fe:label(countEntry.key))} 
 									<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
-								</la:link>
+								</a>
 							</li>
 						</c:if>
 					</c:forEach>
@@ -287,11 +95,11 @@
 					<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
 						<c:if test="${countEntry.value != 0 && fe:labelexists(countEntry.key) && fn:startsWith(countEntry.key, 'TERRA_')}">
 							<li class="list-group-item py-1">
-								<la:link
-									href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+								<a href="javascript:void(0)"
+									onclick="doSearch5('?q=${f:u(q)}&fields.label=${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}&source_filter=TERRA', '${countEntry.key}');">
 									${f:h(fe:label(countEntry.key))} 
 									<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
-								</la:link>
+								</a>
 							</li>
 						</c:if>
 					</c:forEach>

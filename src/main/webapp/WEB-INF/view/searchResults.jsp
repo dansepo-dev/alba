@@ -38,14 +38,15 @@
 	<ol class="list-unstyled col-md-9">
 		<c:forEach var="doc" varStatus="s" items="${documentItems}">
 			<li id="result${s.index}">
+				<%-- by kim 20220412 --%>
 				<c:if test="${fn:startsWith(doc.url_link, 'http://172')}">
-					<h5><span class="badge badge-success"><la:message key="labels.hs_datasource.terra" /></span></h5>
+					<h5><span class="badge badge-success">TERRA</span></h5>
 				</c:if>
 				<c:if test="${fn:startsWith(doc.url_link, 'https://teams')}">
-					<h5><span class="badge badge-warning"><la:message key="labels.hs_datasource.teams" /></span></h5>
+					<h5><span class="badge badge-warning">TEAMS</span></h5>
 				</c:if>
 				<c:if test="${fn:startsWith(doc.url_link, 'file')}">
-					<h5><span class="badge badge-danger"><la:message key="labels.hs_datasource.fileserver" /></span></h5>
+					<h5><span class="badge badge-danger">ファイルサーバ</span></h5>
 				</c:if>
 
 				<h3 class="title text-truncate">
@@ -147,32 +148,31 @@
 	</ol>
 	<aside class="col-md-3 d-none d-md-block">
 		<%-- Side Content --%>
+		<%-- add by kim 2022-04-12 --%>
 		<jsp:include page="searchCustomResults.jsp" />
 
-		
 		<c:if test="${facetResponse != null}">
 			<c:forEach var="fieldData" items="${facetResponse.fieldList}">
-				<c:if
-					test="${fieldData.name == 'host' && fieldData.valueCountMap.size() > 0}">
+				<c:if test="${fieldData.name == 'host' && fieldData.valueCountMap.size() > 0}">
 					<ul class="list-group mb-2">
-						<li class="list-group-item text-uppercase"><la:message
-								key="labels.facet_label_title" /></li>
+						<li class="list-group-item text-uppercase">
+						<la:message key="labels.facet_label_title" /></li>
 						<c:forEach var="countEntry" items="${fieldData.valueCountMap}">
-							<c:if
-								test="${countEntry.value != 0 && fe:labelexists(countEntry.key)}">
-								<li class="list-group-item"><la:link
-										href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
-											${f:h(fe:label(countEntry.key))} 
-											<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
-									</la:link></li>
+							<c:if test="${countEntry.value != 0 && fe:labelexists(countEntry.key)}">
+								<li class="list-group-item">
+								<la:link href="/search?q=${f:u(q)}&ex_q=label%3a${f:u(countEntry.key)}&sdh=${f:u(fe:sdh(sh))}${fe:pagingQuery(null)}${fe:facetQuery()}${fe:geoQuery()}">
+									${f:h(fe:label(countEntry.key))} 
+									<span class="badge badge-secondary badge-pill float-right">${f:h(countEntry.value)}</span>
+								</la:link>
+								</li>
 							</c:if>
 						</c:forEach>
 					</ul>
 				</c:if>
 			</c:forEach>
 
+			<%-- LABEL --%>
 			<%--
-			LABEL
 			<c:forEach var="fieldData" items="${facetResponse.fieldList}">
 				<c:if
 					test="${fieldData.name == 'label' && fieldData.valueCountMap.size() > 0}">
@@ -196,15 +196,20 @@
 
 			<c:forEach var="facetQueryView" items="${fe:facetQueryViewList()}">
 				<ul class="list-group mb-2">
-					<li class="list-group-item py-1 text-uppercase"><la:message
-							key="${facetQueryView.title}" /></li>
+					<li class="list-group-item py-1 text-uppercase">
+					<la:message key="${facetQueryView.title}" /></li>
 					<c:set var="facetFound" value="F"/>
 					<c:forEach var="queryEntry" items="${facetQueryView.queryMap}">
 						<c:if test="${facetResponse.queryCountMap[queryEntry.value] > 0}">
-							<li class="list-group-item py-1"><la:link
-									href="/search?q=${f:u(q)}&ex_q=${f:u(queryEntry.value)}&sdh=${f:u(fe:sdh(sdh))}${fe:pagingQuery(queryEntry.value)}${fe:facetQuery()}${fe:geoQuery()}">
-									<c:if test="${fn:startsWith(queryEntry.key, 'labels.')}"><la:message key="${queryEntry.key}" /></c:if>
-									<c:if test="${not fn:startsWith(queryEntry.key, 'labels.')}">${f:h(queryEntry.key)}</c:if>
+							<li class="list-group-item py-1">
+								<la:link
+									href="/search?q=${f:u(q)}&ex_q=${f:u(queryEntry.value)}&sdh=${f:u(fe:sdh(sdh))}${fe:pagingQuery(queryEntry.value)}${fe:facetQuery()}${fe:geoQuery()}&common_filter=${common_filter}&source_filter=${source_filter}">
+									<c:if test="${fn:startsWith(queryEntry.key, 'labels.')}">
+										<la:message key="${queryEntry.key}" />
+									</c:if>
+									<c:if test="${not fn:startsWith(queryEntry.key, 'labels.')}">
+										${f:h(queryEntry.key)}
+									</c:if>
 									<span class="badge badge-secondary badge-pill float-right">${f:h(facetResponse.queryCountMap[queryEntry.value])}</span>
 								</la:link></li>
 							<c:set var="facetFound" value="T"/>
@@ -215,14 +220,18 @@
 					</c:if>
 				</ul>
 			</c:forEach>
+			<%--
 			<c:if test="${!empty ex_q}">
+			 --%>
 				<div class="float-right">
 					<la:link href="/search?q=${f:u(q)}"
 						styleClass="btn btn-link btn-sm">
 						<la:message key="labels.facet_label_reset" />
 					</la:link>
 				</div>
+			<%--
 			</c:if>
+			 --%>
 		</c:if>
 	</aside>
 </div>

@@ -70,14 +70,15 @@ public class QueryStringBuilder {
             queryBuf.append(escapeQuery(query));
         }
 
-        if (params.getFilterCommon() != null)
-            queryBuf.append(" ").append(params.getFilterCommon());
+        // by kim 2022-04-12
+        if (params.getCommonFilter() != null)
+            queryBuf.append(" ").append(params.getCommonFilter());
 
-        if (params.getFilterSource() != null)
-            queryBuf.append(" ").append(params.getFilterSource());
-
-        if (params.getFilterSub() != null)
-            queryBuf.append(" ").append(params.getFilterSub());
+        //        if (params.getSourceFilter() != null)
+        //            queryBuf.append(" ").append(params.getSourceFilter());
+        //
+        //        if (params.getFileserverFilter() != null)
+        //            queryBuf.append(" ").append(params.getFileserverFilter());
 
         stream(params.getExtraQueries())
                 .of(stream -> stream.filter(q -> StringUtil.isNotBlank(q) && q.length() <= maxQueryLength).forEach(q -> {

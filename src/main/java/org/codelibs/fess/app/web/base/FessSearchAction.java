@@ -43,12 +43,16 @@ import org.codelibs.fess.helper.UserInfoHelper;
 import org.codelibs.fess.mylasta.action.FessUserBean;
 import org.codelibs.fess.thumbnail.ThumbnailManager;
 import org.codelibs.fess.util.ComponentUtil;
+import org.codelibs.fess.util.ResourceUtil;
 import org.dbflute.optional.OptionalThing;
 import org.lastaflute.web.login.LoginManager;
 import org.lastaflute.web.response.ActionResponse;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.response.next.HtmlNext;
 import org.lastaflute.web.ruts.process.ActionRuntime;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class FessSearchAction extends FessBaseAction {
 
@@ -200,6 +204,19 @@ public abstract class FessSearchAction extends FessBaseAction {
                 form.sort = sortValueSb.toString();
             }
         }
+
+        // add by kim 2022-06-10
+        Map<String, List<Map<String, String>>> commonFilter = getCommonFilter("search_option.json");
+        request.setAttribute("Common", commonFilter.get("CommonFilter"));
+
+        request.setAttribute("Source", commonFilter.get("SourceFilter"));
+
+        request.setAttribute("Fileserver", commonFilter.get("FileserverFilter"));
+
+        request.setAttribute("Teams", commonFilter.get("TeamsFilter"));
+
+        request.setAttribute("Terra", commonFilter.get("TerraFilter"));
+
     }
 
     protected void buildInitParams() {
@@ -238,4 +255,23 @@ public abstract class FessSearchAction extends FessBaseAction {
     protected HtmlNext virtualHost(final HtmlNext path) {
         return ComponentUtil.getVirtualHostHelper().getVirtualHostPath(path);
     }
+
+    // add by kim 2022-06-10
+    protected Map<String, List<Map<String, String>>> getCommonFilter(String filter) {
+        java.nio.file.Path path = ResourceUtil.getConfPath(filter);
+        Map<String, List<Map<String, String>>> map = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            map = mapper.readValue(path.toFile(), new TypeReference<Map<String, List<Map<String, String>>>>() {
+            });
+            //            if (logger.isDebugEnabled()) {
+            //                logger.debug(map);
+            //            }
+        } catch (Exception ex) {
+            //TODO ファイル存在チェック
+            ex.printStackTrace();
+        }
+        return map;
+    }
+
 }

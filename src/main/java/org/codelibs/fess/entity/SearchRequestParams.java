@@ -73,11 +73,15 @@ public abstract class SearchRequestParams {
     public abstract String getSimilarDocHash();
 
     //by kim 2022-04-27
-    public abstract String getFilterCommon();
+    public abstract String getCommonFilter();
 
-    public abstract String getFilterSource();
+    public abstract String getSourceFilter();
 
-    public abstract String getFilterSub();
+    public abstract String getFileserverFilter();
+
+    public abstract String getTeamsFilter();
+
+    public abstract String getTerraFilter();
 
     public String getTrackTotalHits() {
         return null;

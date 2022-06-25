@@ -5,6 +5,11 @@ $(function() {
       contextPath = $("#contextPath").val();
 
   $("#searchForm").on("submit", function(e) {
+	// by kim 
+	var x1 = $("#filter1").val();
+	if (x1 == "virtual_host:")
+	  $("#filter1").val("");
+	
     $searchButton.attr("disabled", true);
     setTimeout(function() {
       $searchButton.attr("disabled", false);

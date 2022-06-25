@@ -241,8 +241,7 @@ public class QueryHelper {
                     fessConfig.getIndexFieldAnchor(), //
                     fessConfig.getIndexFieldClickCount(), //
                     fessConfig.getIndexFieldFavoriteCount(), //
-                    fessConfig.getIndexFieldLang(),
-                    fessConfig.getIndexFieldVirtualHost()); // by kim 2022-05-09 virtual_host
+                    fessConfig.getIndexFieldLang(), fessConfig.getIndexFieldVirtualHost()); // by kim 2022-05-09 virtual_host
         }
         if (facetFields == null) {
             facetFields = fessConfig.getQueryAdditionalFacetFields(//

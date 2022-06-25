@@ -1,0 +1,70 @@
+{
+    "CommonFilter":
+    [
+        {"key":"SiC", "name":"SiC"},
+        {"key":"GaN", "name":"GaN"},
+        {"key":"MOSFET", "name":"MOSFET"},
+        {"key":"モジュール", "name":"モジュール"},
+        {"key":"DAB", "name":"DAB"},
+        {"key":"三相インバータ", "name":"三相インバータ"},
+        {"key":"PFC回路", "name":"PFC回路"},
+        {"key":"単相インバータ", "name":"単相インバータ"},
+        {"key":"DCDCインバータ", "name":"DCDCコンバータ"},
+        {"key":"蓄電システム", "name":"蓄電システム"},
+        {"key":"PFC電源", "name":"PFC電源"},
+        {"key":"スイッチング電源", "name":"スイッチング電源"},
+        {"key":"パワーコンディショナー", "name":"パワーコンディショナー"},
+        {"key":"系統連系インバータ", "name":"系統連系インバータ"},
+        {"key":"非接触給電", "name":"非接触給電"},
+        {"key":"12V", "name":"12V"},
+        {"key":"24V", "name":"24V"},
+        {"key":"48V", "name":"48V"},
+        {"key":"360V", "name":"360V"},
+        {"key":"500V", "name":"500V"},
+        {"key":"800V", "name":"800V"},
+        {"key":"1200V", "name":"1200V"},
+        {"key":"10A", "name":"10A"},
+        {"key":"30A", "name":"30A"},
+        {"key":"50A", "name":"50A"},
+        {"key":"200A", "name":"200A"},
+        {"key":"10kHz", "name":"10kHz"},
+        {"key":"100kHz", "name":"100kHz"},
+        {"key":"1MHz", "name":"1MHz"}
+    ],
+    "SourceFilter":
+    [
+        {"key":"FILESERVER", "name":"ファイルサーバ"},
+        {"key":"TEAMS", "name":"TEAMS"},
+        {"key":"TERRA", "name":"TERRA"}
+    ],
+    "FileserverFilter":
+    [
+        {"key":"FILESERVER_A", "name":"A_仕様関連"},
+        {"key":"FILESERVER_B", "name":"B_基板関連"},
+        {"key":"FILESERVER_C", "name":"C_HW関連"},
+        {"key":"FILESERVER_D", "name":"D_CPLD_FPGA関連"},
+        {"key":"FILESERVER_E", "name":"E_機構関連"},
+        {"key":"FILESERVER_F", "name":"F_SW関連"},
+        {"key":"FILESERVER_G", "name":"G_評価関連"},
+        {"key":"FILESERVER_H", "name":"H_製造関連"},
+        {"key":"FILESERVER_J", "name":"J_取扱説明書"},
+        {"key":"FILESERVER_K", "name":"K_客先向け報告書"},
+        {"key":"FILESERVER_L", "name":"L_プロジェクト管理"},
+        {"key":"FILESERVER_M", "name":"M_記録・連絡"}
+    ],
+    "TeamsFilter":
+    [
+        {"key":"TEAMS_HW", "name":"技術HWキュレーション"},
+        {"key":"TEAMS_SW", "name":"技術SWキュレーション"},
+        {"key":"TEAMS_CM", "name":"技術共通キュレーション"},
+        {"key":"TEAMS_CP", "name":"会社キュレーション"}
+    ],
+    "TerraFilter":
+    [
+        {"key":"TERRA_HW", "name":"ハードウェア関連"},
+        {"key":"TERRA_SW", "name":"ソフトウェア関連"},
+        {"key":"TERRA_SD", "name":"はんだ関連"},
+        {"key":"TERRA_TB", "name":"トラブル関連"},
+        {"key":"TERRA_EQ", "name":"計測器関連"}
+    ]
+}

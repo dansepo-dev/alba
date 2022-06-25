@@ -175,21 +175,26 @@ public class SuggestApiManager extends BaseJsonApiManager {
         private final String[] tags;
 
         // by kim 2022-04-27
-        private final String ft_cm;
-        private final String ft_sc;
-        private final String ft_sb;
+        private final String commonFilter;
+        private final String sourceFilter;
+        private final String fileserverFilter;
+        private final String teamsFilter;
+        private final String terraFilter;
 
         protected RequestParameter(final HttpServletRequest request, final String query, final String[] tags, final String[] fields,
-                final int num, final String ft_cm, final String ft_sc, final String ft_sb) {
+                final int num, final String commonFilter, final String sourceFilter, final String fileserverFilter,
+                final String teamsFilter, final String terraFilter) {
             this.query = query;
             this.tags = tags;
             this.fields = fields;
             this.num = num;
             this.request = request;
 
-            this.ft_cm = ft_cm;
-            this.ft_sc = ft_cm;
-            this.ft_sb = ft_sb;
+            this.commonFilter = commonFilter;
+            this.sourceFilter = sourceFilter;
+            this.fileserverFilter = fileserverFilter;
+            this.teamsFilter = teamsFilter;
+            this.terraFilter = terraFilter;
         }
 
         protected static RequestParameter parse(final HttpServletRequest request) {
@@ -218,11 +223,14 @@ public class SuggestApiManager extends BaseJsonApiManager {
                 tags = new String[0];
             }
 
-            final String ft_cm = request.getParameter("ft_cm");
-            final String ft_sc = request.getParameter("ft_sc");
-            final String ft_sb = request.getParameter("ft_sb");
+            final String commonFilter = request.getParameter("common_filter");
+            final String sourceFilter = request.getParameter("source_filter");
+            final String fileserverFilter = request.getParameter("fileserver_filter");
+            final String teamsFilter = request.getParameter("teams_filter");
+            final String terraFilter = request.getParameter("terra_filter");
 
-            return new RequestParameter(request, query, tags, fields, num, ft_cm, ft_sc, ft_sb);
+            return new RequestParameter(request, query, tags, fields, num, commonFilter, sourceFilter, fileserverFilter, teamsFilter,
+                    terraFilter);
         }
 
         @Override
@@ -314,18 +322,28 @@ public class SuggestApiManager extends BaseJsonApiManager {
 
         // by kim 2022-04-27
         @Override
-        public String getFilterCommon() {
-            return ft_cm;
+        public String getCommonFilter() {
+            return commonFilter;
         }
 
         @Override
-        public String getFilterSource() {
-            return ft_sc;
+        public String getSourceFilter() {
+            return sourceFilter;
         }
 
         @Override
-        public String getFilterSub() {
-            return ft_sb;
+        public String getFileserverFilter() {
+            return fileserverFilter;
+        }
+
+        @Override
+        public String getTeamsFilter() {
+            return teamsFilter;
+        }
+
+        @Override
+        public String getTerraFilter() {
+            return terraFilter;
         }
 
     }

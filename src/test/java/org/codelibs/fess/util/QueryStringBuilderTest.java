@@ -166,6 +166,36 @@ public class QueryStringBuilderTest extends UnitFessTestCase {
                 return new HighlightInfo();
             }
 
+            @Override
+            public String getCommonFilter() {
+                // TODO 自動生成されたメソッド・スタブ
+                return null;
+            }
+
+            @Override
+            public String getSourceFilter() {
+                // TODO 自動生成されたメソッド・スタブ
+                return null;
+            }
+
+            @Override
+            public String getFileserverFilter() {
+                // TODO 自動生成されたメソッド・スタブ
+                return null;
+            }
+
+            @Override
+            public String getTeamsFilter() {
+                // TODO 自動生成されたメソッド・スタブ
+                return null;
+            }
+
+            @Override
+            public String getTerraFilter() {
+                // TODO 自動生成されたメソッド・スタブ
+                return null;
+            }
+
         }).escape(escape).build();
     }
 }
